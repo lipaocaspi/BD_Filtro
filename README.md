@@ -29367,7 +29367,60 @@
 11. Obtener los títulos de las películas que nunca han sido alquiladas.
 
     ```sql
-   
+   SELECT p.titulo 
+   FROM pelicula p 
+   WHERE p.id_pelicula NOT IN (
+      SELECT inv.id_pelicula 
+      FROM inventario inv
+   );
+
+   +------------------------+
+   | titulo                 |
+   +------------------------+
+   | ALICE FANTASIA         |
+   | APOLLO TEEN            |
+   | ARGONAUTS TOWN         |
+   | ARK RIDGEMONT          |
+   | ARSENIC INDEPENDENCE   |
+   | BOONDOCK BALLROOM      |
+   | BUTCH PANTHER          |
+   | CATCH AMISTAD          |
+   | CHINATOWN GLADIATOR    |
+   | CHOCOLATE DUCK         |
+   | COMMANDMENTS EXPRESS   |
+   | CROSSING DIVORCE       |
+   | CROWDS TELEMARK        |
+   | CRYSTAL BREAKING       |
+   | DAZED PUNK             |
+   | DELIVERANCE MULHOLLAND |
+   | FIREHOUSE VIETNAM      |
+   | FLOATS GARDEN          |
+   | FRANKENSTEIN STRANGER  |
+   | GLADIATOR WESTWARD     |
+   | GUMP DATE              |
+   | HATE HANDICAP          |
+   | HOCUS FRIDA            |
+   | KENTUCKIAN GIANT       |
+   | KILL BROTHERHOOD       |
+   | MUPPET MILE            |
+   | ORDER BETRAYED         |
+   | PEARL DESTINY          |
+   | PERDITION FARGO        |
+   | PSYCHO SHRUNK          |
+   | RAIDERS ANTITRUST      |
+   | RAINBOW SHOCK          |
+   | ROOF CHAMPION          |
+   | SISTER FREDDY          |
+   | SKY MIRACLE            |
+   | SUICIDES SILENCE       |
+   | TADPOLE PARK           |
+   | TREASURE COMMAND       |
+   | VILLAIN DESPERATE      |
+   | VOLUME HOUSE           |
+   | WAKE JAWS              |
+   | WALLS ARTIST           |
+   +------------------------+
+
     ```
 
     
@@ -29398,7 +29451,579 @@
 13. Encontrar el nombre de las ciudades que no tienen ningún cliente registrado.
 
     ```sql
-    
+   SELECT DISTINCT(ci.nombre) 
+   FROM ciudad ci
+   WHERE ci.id_ciudad NOT IN (
+      SELECT d.id_ciudad 
+      FROM direccion d 
+      JOIN cliente c 
+      ON c.id_direccion = d.id_direccion
+   );
+
+   +----------------------------+
+   | nombre                     |
+   +----------------------------+
+   | A Corua (La Corua)         |
+   | Abha                       |
+   | Abu Dhabi                  |
+   | Acua                       |
+   | Adana                      |
+   | Addis Abeba                |
+   | Aden                       |
+   | Adoni                      |
+   | Ahmadnagar                 |
+   | Akishima                   |
+   | Akron                      |
+   | al-Ayn                     |
+   | al-Hawiya                  |
+   | al-Manama                  |
+   | al-Qadarif                 |
+   | al-Qatif                   |
+   | Allappuzha (Alleppey)      |
+   | Allende                    |
+   | Almirante Brown            |
+   | Alvorada                   |
+   | Ambattur                   |
+   | Amersfoort                 |
+   | Amroha                     |
+   | Angra dos Reis             |
+   | Anpolis                    |
+   | Antofagasta                |
+   | Aparecida de Goinia        |
+   | Apeldoorn                  |
+   | Araatuba                   |
+   | Arecibo                    |
+   | Arlington                  |
+   | Ashdod                     |
+   | Ashgabat                   |
+   | Ashqelon                   |
+   | Asuncin                    |
+   | Atinsk                     |
+   | Atlixco                    |
+   | Augusta-Richmond County    |
+   | Aurora                     |
+   | Avellaneda                 |
+   | Bag                        |
+   | Baha Blanca                |
+   | Baicheng                   |
+   | Baiyin                     |
+   | Baku                       |
+   | Balaiha                    |
+   | Balikesir                  |
+   | Balurghat                  |
+   | Bamenda                    |
+   | Bandar Seri Begawan        |
+   | Banjul                     |
+   | Barcelona                  |
+   | Basel                      |
+   | Bat Yam                    |
+   | Batman                     |
+   | Batna                      |
+   | Battambang                 |
+   | Baybay                     |
+   | Bayugan                    |
+   | Bchar                      |
+   | Beira                      |
+   | Bellevue                   |
+   | Belm                       |
+   | Benguela                   |
+   | Beni-Mellal                |
+   | Benin City                 |
+   | Bergamo                    |
+   | Berhampore (Baharampur)    |
+   | Bern                       |
+   | Bhavnagar                  |
+   | Bhilwara                   |
+   | Bhimavaram                 |
+   | Bhusawal                   |
+   | Bijapur                    |
+   | Bilbays                    |
+   | Binzhou                    |
+   | Birgunj                    |
+   | Bislig                     |
+   | Blumenau                   |
+   | Boa Vista                  |
+   | Boksburg                   |
+   | Botosani                   |
+   | Botshabelo                 |
+   | Bradford                   |
+   | Braslia                    |
+   | Bratislava                 |
+   | Brescia                    |
+   | Brest                      |
+   | Brindisi                   |
+   | Brockton                   |
+   | Bucuresti                  |
+   | Buenaventura               |
+   | Bydgoszcz                  |
+   | Cabuyao                    |
+   | Callao                     |
+   | Cam Ranh                   |
+   | Cape Coral                 |
+   | Caracas                    |
+   | Carmen                     |
+   | Cavite                     |
+   | Cayenne                    |
+   | Celaya                     |
+   | Chandrapur                 |
+   | Changhwa                   |
+   | Changzhou                  |
+   | Chapra                     |
+   | Charlotte Amalie           |
+   | Chatsworth                 |
+   | Cheju                      |
+   | Chiayi                     |
+   | Chungho                    |
+   | Cianjur                    |
+   | Ciomas                     |
+   | Ciparay                    |
+   | Ciudad del Este            |
+   | Clarksville                |
+   | Coacalco de Berriozbal     |
+   | Coatzacoalcos              |
+   | Compton                    |
+   | Coquimbo                   |
+   | Cuauhtmoc                  |
+   | Cuautla                    |
+   | Cuernavaca                 |
+   | Cuman                      |
+   | Czestochowa                |
+   | Dadu                       |
+   | Dallas                     |
+   | Datong                     |
+   | Daugavpils                 |
+   | Daxian                     |
+   | Dayton                     |
+   | Deba Habe                  |
+   | Denizli                    |
+   | Dhaka                      |
+   | Dhule (Dhulia)             |
+   | Dongying                   |
+   | Donostia-San Sebastin      |
+   | Dos Quebradas              |
+   | Duisburg                   |
+   | Dundee                     |
+   | Dzerzinsk                  |
+   | Ede                        |
+   | Effon-Alaiye               |
+   | El Alto                    |
+   | El Fuerte                  |
+   | El Monte                   |
+   | Emeishan                   |
+   | Emmen                      |
+   | Enshi                      |
+   | Erlangen                   |
+   | Escobar                    |
+   | Eskisehir                  |
+   | Etawah                     |
+   | Ezeiza                     |
+   | Ezhou                      |
+   | Faaa                       |
+   | Fengshan                   |
+   | Firozabad                  |
+   | Florencia                  |
+   | Fontana                    |
+   | Fukuyama                   |
+   | Funafuti                   |
+   | Fuyu                       |
+   | Fuzhou                     |
+   | Gandhinagar                |
+   | Garden Grove               |
+   | Garland                    |
+   | Gatineau                   |
+   | Gaziantep                  |
+   | Gijn                       |
+   | Gingoog                    |
+   | Goinia                     |
+   | Gorontalo                  |
+   | Grand Prairie              |
+   | Graz                       |
+   | Greensboro                 |
+   | Guadalajara                |
+   | Guaruj                     |
+   | guas Lindas de Gois        |
+   | Gulbarga                   |
+   | Hagonoy                    |
+   | Haining                    |
+   | Haiphong                   |
+   | Haldia                     |
+   | Halifax                    |
+   | Halisahar                  |
+   | Halle/Saale                |
+   | Hami                       |
+   | Hanoi                      |
+   | Hidalgo                    |
+   | Higashiosaka               |
+   | Hino                       |
+   | Hiroshima                  |
+   | Hodeida                    |
+   | Hohhot                     |
+   | Hoshiarpur                 |
+   | Hsichuh                    |
+   | Huaian                     |
+   | Hubli-Dharwad              |
+   | Huejutla de Reyes          |
+   | Huixquilucan               |
+   | Hunuco                     |
+   | Ibirit                     |
+   | Idfu                       |
+   | Ife                        |
+   | Ikerre                     |
+   | Iligan                     |
+   | Ilorin                     |
+   | Imus                       |
+   | Inegl                      |
+   | Ipoh                       |
+   | Isesaki                    |
+   | Ivanovo                    |
+   | Iwaki                      |
+   | Iwakuni                    |
+   | Iwatsuki                   |
+   | Izumisano                  |
+   | Jaffna                     |
+   | Jaipur                     |
+   | Jakarta                    |
+   | Jalib al-Shuyukh           |
+   | Jamalpur                   |
+   | Jaroslavl                  |
+   | Jastrzebie-Zdrj            |
+   | Jedda                      |
+   | Jelets                     |
+   | Jinchang                   |
+   | Jining                     |
+   | Jinzhou                    |
+   | Jodhpur                    |
+   | Johannesburg               |
+   | Joliet                     |
+   | Jos Azueta                 |
+   | Juazeiro do Norte          |
+   | Juiz de Fora               |
+   | Junan                      |
+   | Jurez                      |
+   | Kabul                      |
+   | Kakamigahara               |
+   | Kaliningrad                |
+   | Kalisz                     |
+   | Kamakura                   |
+   | Kamjanets-Podilskyi        |
+   | Kamyin                     |
+   | Kanazawa                   |
+   | Kanchrapara                |
+   | Kansas City                |
+   | Karnal                     |
+   | Katihar                    |
+   | Kermanshah                 |
+   | Kilis                      |
+   | Kimchon                    |
+   | Kingstown                  |
+   | Kirovo-Tepetsk             |
+   | Kisumu                     |
+   | Kitwe                      |
+   | Klerksdorp                 |
+   | Kolpino                    |
+   | Konotop                    |
+   | Koriyama                   |
+   | Korla                      |
+   | Korolev                    |
+   | Kowloon and New Kowloon    |
+   | Ktahya                     |
+   | Kuching                    |
+   | Kumbakonam                 |
+   | Kurgan                     |
+   | Kursk                      |
+   | Kuwana                     |
+   | La Paz                     |
+   | La Plata                   |
+   | La Romana                  |
+   | Laiwu                      |
+   | Lancaster                  |
+   | Laohekou                   |
+   | Lapu-Lapu                  |
+   | Lausanne                   |
+   | Le Mans                    |
+   | Lengshuijiang              |
+   | Leshan                     |
+   | Lethbridge                 |
+   | Lhokseumawe                |
+   | Liaocheng                  |
+   | Lilongwe                   |
+   | Lima                       |
+   | Lincoln                    |
+   | Linz                       |
+   | Lipetsk                    |
+   | Livorno                    |
+   | Ljubertsy                  |
+   | Loja                       |
+   | London                     |
+   | Lublin                     |
+   | Lubumbashi                 |
+   | Luzinia                    |
+   | Madiun                     |
+   | Mahajanga                  |
+   | Maikop                     |
+   | Malm                       |
+   | Manchester                 |
+   | Mandaluyong                |
+   | Mandi Bahauddin            |
+   | Mannheim                   |
+   | Maracabo                   |
+   | Maring                     |
+   | Matamoros                  |
+   | Matsue                     |
+   | Meixian                    |
+   | Memphis                    |
+   | Merlo                      |
+   | Mexicali                   |
+   | Miraj                      |
+   | Mit Ghamr                  |
+   | Miyakonojo                 |
+   | Mogiljov                   |
+   | Molodetno                  |
+   | Monclova                   |
+   | Monywa                     |
+   | Moscow                     |
+   | Mosul                      |
+   | Mukateve                   |
+   | Mwanza                     |
+   | Mwene-Ditu                 |
+   | Mysore                     |
+   | Naala-Porto                |
+   | Nabereznyje Telny          |
+   | Nador                      |
+   | Nagaon                     |
+   | Nagareyama                 |
+   | Najafabad                  |
+   | Naju                       |
+   | Nakhon Sawan               |
+   | Nam Dinh                   |
+   | Namibe                     |
+   | NDjamna                    |
+   | Newcastle                  |
+   | Nezahualcyotl              |
+   | Nha Trang                  |
+   | Niznekamsk                 |
+   | Novi Sad                   |
+   | Novoterkassk               |
+   | Nukualofa                  |
+   | Nuuk                       |
+   | Nyeri                      |
+   | Ocumare del Tuy            |
+   | Ogbomosho                  |
+   | Okara                      |
+   | Okayama                    |
+   | Okinawa                    |
+   | Olomouc                    |
+   | Omdurman                   |
+   | Omiya                      |
+   | Ondo                       |
+   | Onomichi                   |
+   | Oshawa                     |
+   | ostka                      |
+   | Otsu                       |
+   | Oulu                       |
+   | Ourense (Orense)           |
+   | Owo                        |
+   | Oyo                        |
+   | Ozamis                     |
+   | Paarl                      |
+   | Pachuca de Soto            |
+   | Pak Kret                   |
+   | Palghat (Palakkad)         |
+   | Pangkal Pinang             |
+   | Papeete                    |
+   | Parbhani                   |
+   | Pathankot                  |
+   | Patiala                    |
+   | Patras                     |
+   | Pavlodar                   |
+   | Pemalang                   |
+   | Peoria                     |
+   | Pereira                    |
+   | Phnom Penh                 |
+   | Pingxiang                  |
+   | Pjatigorsk                 |
+   | Plock                      |
+   | Po                         |
+   | Ponce                      |
+   | Pontianak                  |
+   | Poos de Caldas             |
+   | Portoviejo                 |
+   | Probolinggo                |
+   | Pudukkottai                |
+   | Pune                       |
+   | Purnea (Purnia)            |
+   | Purwakarta                 |
+   | Pyongyang                  |
+   | Qalyub                     |
+   | Qinhuangdao                |
+   | Qomsheh                    |
+   | Quilmes                    |
+   | Rae Bareli                 |
+   | Rajkot                     |
+   | Rampur                     |
+   | Rancagua                   |
+   | Ranchi                     |
+   | Richmond Hill              |
+   | Rio Claro                  |
+   | Rizhao                     |
+   | Roanoke                    |
+   | Robamba                    |
+   | Rockford                   |
+   | Ruse                       |
+   | Rustenburg                 |
+   | s-Hertogenbosch            |
+   | Saarbrcken                 |
+   | Saint Louis                |
+   | Saint-Denis                |
+   | Salala                     |
+   | Salamanca                  |
+   | Salinas                    |
+   | Salzburg                   |
+   | Sambhal                    |
+   | San Felipe de Puerto Plata |
+   | San Felipe del Progreso    |
+   | San Juan Bautista Tuxtepec |
+   | San Lorenzo                |
+   | San Miguel de Tucumn       |
+   | Sanaa                      |
+   | Santa Brbara dOeste        |
+   | Santa F                    |
+   | Santa Rosa                 |
+   | Santiago de los Caballeros |
+   | Santo Andr                 |
+   | Sanya                      |
+   | Satna                      |
+   | Sawhaj                     |
+   | Serpuhov                   |
+   | Shahr-e Kord               |
+   | Shanwei                    |
+   | Shaoguan                   |
+   | Sharja                     |
+   | Shenzhen                   |
+   | Shimoga                    |
+   | Shivapuri                  |
+   | Shubra al-Khayma           |
+   | Siegen                     |
+   | Siliguri (Shiliguri)       |
+   | Simferopol                 |
+   | Sincelejo                  |
+   | Sirjan                     |
+   | Sivas                      |
+   | Skikda                     |
+   | Smolensk                   |
+   | So Bernardo do Campo       |
+   | So Leopoldo                |
+   | Sogamoso                   |
+   | Sokoto                     |
+   | Songkhla                   |
+   | Sorocaba                   |
+   | Soshanguve                 |
+   | Sousse                     |
+   | South Hill                 |
+   | Southampton                |
+   | Southport                  |
+   | Springs                    |
+   | Stara Zagora               |
+   | Sterling Heights           |
+   | Stockport                  |
+   | Sucre                      |
+   | Suihua                     |
+   | Sullana                    |
+   | Sultanbeyli                |
+   | Sumqayit                   |
+   | Sumy                       |
+   | Sungai Petani              |
+   | Sunnyvale                  |
+   | Surakarta                  |
+   | Syktyvkar                  |
+   | Syrakusa                   |
+   | Szkesfehrvr                |
+   | Tabora                     |
+   | Tabriz                     |
+   | Tabuk                      |
+   | Tafuna                     |
+   | Taguig                     |
+   | Taizz                      |
+   | Talavera                   |
+   | Tallahassee                |
+   | Tama                       |
+   | Tambaram                   |
+   | Tanauan                    |
+   | Tandil                     |
+   | Tanshui                    |
+   | Tanza                      |
+   | Tarlac                     |
+   | Tarsus                     |
+   | Tartu                      |
+   | Teboksary                  |
+   | Tegal                      |
+   | Tel Aviv-Jaffa             |
+   | Tete                       |
+   | Tianjin                    |
+   | Tiefa                      |
+   | Tieli                      |
+   | Tokat                      |
+   | Tonghae                    |
+   | Tongliao                   |
+   | Torren                     |
+   | Touliu                     |
+   | Toulon                     |
+   | Trshavn                    |
+   | Tsaotun                    |
+   | Tsuyama                    |
+   | Tuguegarao                 |
+   | Tychy                      |
+   | Udaipur                    |
+   | Udine                      |
+   | Ueda                       |
+   | Uijongbu                   |
+   | Uluberia                   |
+   | Urawa                      |
+   | Uruapan                    |
+   | Usak                       |
+   | Usolje-Sibirskoje          |
+   | Uttarpara-Kotrung          |
+   | Vaduz                      |
+   | Valencia                   |
+   | Valle de la Pascua         |
+   | Valle de Santiago          |
+   | Valparai                   |
+   | Vancouver                  |
+   | Varanasi (Benares)         |
+   | Vicente Lpez               |
+   | Vijayawada                 |
+   | Vilnius                    |
+   | Vinh                       |
+   | Vitria de Santo Anto       |
+   | Warren                     |
+   | Weifang                    |
+   | Witten                     |
+   | Woodridge                  |
+   | Wroclaw                    |
+   | Xiangfan                   |
+   | Xiangtan                   |
+   | Xintai                     |
+   | Xinxiang                   |
+   | Yangor                     |
+   | Yantai                     |
+   | Yaound                     |
+   | Yerevan                    |
+   | Yinchuan                   |
+   | Yingkou                    |
+   | York                       |
+   | Yuncheng                   |
+   | Yuzhou                     |
+   | Zalantun                   |
+   | Zanzibar                   |
+   | Zaoyang                    |
+   | Zapopan                    |
+   | Zaria                      |
+   | Zeleznogorsk               |
+   | Zhezqazghan                |
+   | Zhoushan                   |
+   | Ziguinchor                 |
+   +----------------------------+
+
     ```
 
     
@@ -29406,7 +30031,11 @@
 14. Obtener los nombres y apellidos de los actores que han participado en más de 10 películas.(having)
 
     ```sql
-    
+    SELECT a.nombres, a.apellidos
+    FROM actor a, pelicula_actor pa
+    WHERE a.id_actor = pa.id_actor
+    GROUP BY a.nombres, a.apellidos
+    HAVING COUNT()
     ```
 
     
